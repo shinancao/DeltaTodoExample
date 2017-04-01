@@ -10,13 +10,13 @@ class TodoTableViewController: UITableViewController {
     }
 
     override func viewDidLoad() {
-        filterSegmentedControl.addTarget(self, action: "filterValueChanged", forControlEvents: .ValueChanged)
+        filterSegmentedControl.addTarget(self, action: #selector(TodoTableViewController.filterValueChanged), for: .valueChanged)
 
-        store.activeFilter.producer.startWithNext { filter in
+        store.activeFilter.producer.startWithValues { filter in
             self.filterSegmentedControl.selectedSegmentIndex = filter.rawValue
         }
 
-        store.activeTodos.startWithNext { todos in
+        store.activeTodos.startWithValues { todos in
             self.viewModel = TodosViewModel(todos: todos)
         }
     }
@@ -24,21 +24,21 @@ class TodoTableViewController: UITableViewController {
 
 // MARK: Actions
 extension TodoTableViewController {
-    @IBAction func addTapped(sender: UIBarButtonItem) {
-        let alertController = UIAlertController(title: "Create", message: "Create a new todo item", preferredStyle: .Alert)
+    @IBAction func addTapped(_ sender: UIBarButtonItem) {
+        let alertController = UIAlertController(title: "Create", message: "Create a new todo item", preferredStyle: .alert)
 
-        alertController.addTextFieldWithConfigurationHandler() { textField in
+        alertController.addTextField() { textField in
             textField.placeholder = "Name"
         }
 
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel) { _ in })
-        alertController.addAction(UIAlertAction(title: "Create", style: .Default) { _ in
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in })
+        alertController.addAction(UIAlertAction(title: "Create", style: .default) { _ in
             guard let name = alertController.textFields?.first?.text else { return }
 
             store.dispatch(CreateTodoAction(name: name))
         })
 
-        presentViewController(alertController, animated: false, completion: nil)
+        present(alertController, animated: false, completion: nil)
     }
 
     func filterValueChanged() {
@@ -51,12 +51,12 @@ extension TodoTableViewController {
 
 // MARK: UITableViewController
 extension TodoTableViewController {
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.todos.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("todoCell", forIndexPath: indexPath) as! TodoTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "todoCell", for: indexPath) as! TodoTableViewCell
         let todo = viewModel.todoForIndexPath(indexPath)
 
         cell.configure(todo)
@@ -64,14 +64,14 @@ extension TodoTableViewController {
         return cell
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let todo = viewModel.todoForIndexPath(indexPath)
         store.dispatch(ToggleCompletedAction(todo: todo))
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
             let todo = viewModel.todoForIndexPath(indexPath)
             store.dispatch(DeleteTodoAction(todo: todo))
         }

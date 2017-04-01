@@ -10,6 +10,7 @@
 		28A4557BEDF54B0BBE3DB608 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 665580C6850B23B1E03956E0 /* Main.storyboard */; };
 		28C5C9B779A42774C0071E4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6C0F572E820C16B8ACCB6D /* AppDelegate.swift */; };
 		65237A078BBF0C5DC8BAF852 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 285D0BC94B538F39922C7D52 /* Settings.bundle */; };
+		B88746131E8F5AEB00EDE661 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88746121E8F5AEB00EDE661 /* ReactiveSwift.framework */; };
 		C7A7B4D5BDB8F35275A96B04 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F18692A99FA11363087CDA86 /* Foundation.framework */; };
 		D7B3504E177EBCBEB407FB0C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 646D78854735240C7674C1A7 /* LaunchScreen.xib */; };
 		E7144B091C33074500928714 /* Delta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7144B081C33074500928714 /* Delta.framework */; };
@@ -50,6 +51,7 @@
 		665580C6850B23B1E03956E0 /* Main.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		68AEE518FA6FDBD50E3BF6CC /* UnitTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		7B6C0F572E820C16B8ACCB6D /* AppDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B88746121E8F5AEB00EDE661 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = Carthage/Build/iOS/ReactiveSwift.framework; sourceTree = "<group>"; };
 		D3CC4D52B5D369E3141735E1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DCF03E9AB85A9078ED640CE1 /* DeltaTodoExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeltaTodoExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7144B081C33074500928714 /* Delta.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Delta.framework; path = Carthage/Build/iOS/Delta.framework; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			files = (
 				E7144B0D1C33074B00928714 /* ReactiveCocoa.framework in Frameworks */,
 				E7144B0B1C33074800928714 /* Result.framework in Frameworks */,
+				B88746131E8F5AEB00EDE661 /* ReactiveSwift.framework in Frameworks */,
 				E7144B091C33074500928714 /* Delta.framework in Frameworks */,
 				C7A7B4D5BDB8F35275A96B04 /* Foundation.framework in Frameworks */,
 			);
@@ -114,6 +117,7 @@
 		0F187F6805C7A5A6BC0567A6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B88746121E8F5AEB00EDE661 /* ReactiveSwift.framework */,
 				E7144B0C1C33074B00928714 /* ReactiveCocoa.framework */,
 				E7144B0A1C33074800928714 /* Result.framework */,
 				E7144B081C33074500928714 /* Delta.framework */,
@@ -323,8 +327,13 @@
 			attributes = {
 				CLASSPREFIX = "";
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = thoughtbot;
+				TargetAttributes = {
+					FF6603DB3659627AF32806CA = {
+						LastSwiftMigration = 0820;
+					};
+				};
 			};
 			buildConfigurationList = 7479F041CF8098B3FAB5D3F4 /* Build configuration list for PBXProject "DeltaTodoExample" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -375,6 +384,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/ReactiveCocoa.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Delta.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ReactiveSwift.framework",
 			);
 			name = "Copy frameworks (Carthage)";
 			outputPaths = (
@@ -472,6 +482,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.thoughtbot.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -491,6 +502,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.thoughtbot.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -510,17 +522,21 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -567,16 +583,20 @@
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
 				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
@@ -597,6 +617,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

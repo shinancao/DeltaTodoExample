@@ -1,3 +1,4 @@
-github "thoughtbot/Delta" "21c89db831ed6d97dcedfa8b164e1c36a8950beb"
-github "antitypical/Result" "1.0.1"
-github "ReactiveCocoa/ReactiveCocoa" "v4.0.0-RC.1"
+github "ReactiveCocoa/ReactiveCocoa" "5.0.2"
+github "ReactiveCocoa/ReactiveSwift" "1.1.1"
+github "antitypical/Result" "3.2.1"
+github "thoughtbot/Delta" "540b638d9515831b54ce801c07122014175bf985"

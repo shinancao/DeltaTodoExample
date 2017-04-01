@@ -1,7 +1,7 @@
 enum TodoFilter: Int {
-    case All
-    case Active
-    case Completed
+    case all
+    case active
+    case completed
 }
 
 struct Todo {

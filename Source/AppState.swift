@@ -1,4 +1,5 @@
 import ReactiveCocoa
+import ReactiveSwift
 
 private let initialTodos = [
     Todo(name: "Have tea with the Queen", completed: true),
@@ -11,5 +12,5 @@ private let initialTodos = [
 
 struct AppState {
     let todos = MutableProperty(initialTodos)
-    let filter = MutableProperty(TodoFilter.All)
+    let filter = MutableProperty(TodoFilter.all)
 }

@@ -1,4 +1,5 @@
 import ReactiveCocoa
+import ReactiveSwift
 import Delta
 
 extension MutableProperty: Delta.ObservablePropertyType {
